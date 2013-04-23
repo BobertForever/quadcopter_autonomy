@@ -2,6 +2,6 @@
 
   <node pkg="ardrone_autonomy" type="ardrone_driver" name="ardrone" />
   <node respawn="true" pkg="wiimote"  type="wiimote_node.py" name="arWii" />
-  <node pkg="asg1" type="wiimoteFly" name="wiiFly" />
+  <node pkg="ardrone_fly" type="wiimoteFly" name="wiiFly" />
 
 </launch>
