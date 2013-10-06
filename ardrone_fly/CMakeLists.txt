@@ -6,7 +6,7 @@ find_package(catkin REQUIRED COMPONENTS
     geometry_msgs
     sensor_msgs
     std_msgs
-    leaptest)
+    rosleap)
 catkin_package()
 
 add_executable(ballFollow src/ballFollow.cpp)

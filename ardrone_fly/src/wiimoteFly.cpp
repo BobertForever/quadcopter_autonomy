@@ -2,7 +2,6 @@
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/Joy.h"
 #include "std_msgs/Empty.h"
-#include "ardrone_autonomy/Navdata.h"
 #include "ardrone_autonomy/FlightAnim.h"
 #include <string>
 
@@ -24,62 +23,23 @@ std::string msg =
 	"Yaw: [1]/[2]\n"
 	"Altitude: [up]/[down]";
 
-// Global variables for Absolute Control
-bool firstZ = false;
-bool Zlock = false;
-int currentZ = 0;
-int lockedZ = 0;
-
-int mode = 0;
-
 void joyCallback(const sensor_msgs::Joy::ConstPtr& msg){
 
 	geometry_msgs::Twist output;
 	std_msgs::Empty empty;
 	
 	// Takeoff/ Land/ Reset toggles	
-	if(msg->buttons[4] == 1) {
-		firstZ = false;
-		Zlock = false;
-		currentZ = 0;
-		lockedZ = 0;
-		mode = 0;
+	if(msg->buttons[4] == 1)
 		takeoff_pub.publish(empty);
-	}
 	if(msg->buttons[5] == 1)
 		land_pub.publish(empty);
 	if(msg->buttons[10] == 1)
 		reset_pub.publish(empty);
 
-	// Mode toggles
-	if(msg->buttons[9] == 1)
-		mode = 0;
-	if(msg->buttons[8] == 1)
-		mode = 0; // CHANGE TO 1 TO RE-ENABLE ABSOLUTE CONTROL
-
-	// Relative control	
-	if(mode == 0) {
-		// Pitch	
-		output.linear.x	= (msg->axes[0]/10);
-		// Roll		
-		output.linear.y = (msg->axes[1]/10);
-	}
-
-	// Absolute control
-	// TODO: FIX THIS
-	else if(mode == 1) {
-		if(!Zlock) {
-			lockedZ = currentZ;
-			Zlock = true;
-		}
-		if(msg->buttons[3] == 1 || !firstZ)
-			Zlock = false;
-
-		double tranX = cos((lockedZ - currentZ)*M_PI/180.0);
-		double tranY = sin((lockedZ - currentZ)*M_PI/180.0);
-		output.linear.x = tranX*(msg->axes[0]/10);
-		output.linear.y = tranY*(msg->axes[0]/10);
-	}
+	// Pitch	
+	output.linear.x	= (msg->axes[0]/10);
+	// Roll		
+	output.linear.y = (msg->axes[1]/10);
 
 	// Yaw
 	if(msg->buttons[0] == 1 && msg->buttons[1] == 0)
@@ -133,18 +93,7 @@ void joyCallback(const sensor_msgs::Joy::ConstPtr& msg){
 	velocity_pub.publish(output);
 }
 
-void navCallback(const ardrone_autonomy::Navdata::ConstPtr& msg){
-	// Get the Z of the quadcopter
-	firstZ = true;
-	currentZ = (((int)msg->rotZ)+360)%360;
-	
-	// Get battery level
-	std::cout << "Battery Level: " << msg->batteryPercent << std::endl;
-}
-
 int main(int argc, char **argv){
-
-	std::cout << msg << std::endl;
 
 	ros::init(argc, argv, "follower");
 	ros::NodeHandle n;
@@ -157,7 +106,6 @@ int main(int argc, char **argv){
 	takeoff_pub = n.advertise<std_msgs::Empty>("ardrone/takeoff", 1000);
 	reset_pub = n.advertise<std_msgs::Empty>("ardrone/reset", 1000);
 
-	ros::Subscriber sub1 = n.subscribe("ardrone/navdata", 1000, navCallback); 	
 	ros::Subscriber sub2 = n.subscribe("joy", 1000, joyCallback);   
 
 	ros::Rate loop_rate(10);
