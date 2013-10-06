@@ -11,7 +11,8 @@ To run this node:
 * Start the ARDrone drivers  
 ```
     rosrun ardrone_autonomy ardrone_driver
-``` 
+```
+
 * Start the wiimote drivers  
 ```
     rosrun wiimote wiimote_node.py
@@ -47,10 +48,12 @@ To run this node:
 ```
     rosrun ardrone_autonomy ardrone_driver
 ```
+
 * Start CMVision  
 ```
     roslaunch ardrone_fly cmvision_blob_detector.launch
 ```
+
 * Start the wiimote/leap driver and controller code (see above)
 
 ###BWI Safe Leap Demo
