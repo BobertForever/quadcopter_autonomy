@@ -15,11 +15,13 @@ To run this node:
 * Start the wiimote drivers  
 ```
     rosrun wiimote wiimote_node.py
-``` 
+```  
+
 * Start the wiimote controller code 
 ```
 	rosrun ardrone_fly wiimoteFly
-``` 
+```
+
 Optionally, you can run the launch file which starts all the nodes necessry for wiimote control:  
 ```
     roslaunch ardrone_fly ardrone_wiimote_teleop.launch
@@ -28,10 +30,12 @@ Optionally, you can run the launch file which starts all the nodes necessry for 
 ###Leap Motion Controller
 We have also added support for control with a Leap Motion device. This requires [rosleap](https://github.com/mattbroussard/rosleap) and the [Leap Motion SDK](https://www.leapmotion.com/developers).
 * Start the rosleap node 
+
 ```
 	rosrun rosleap rosleap
 ``` 
 * Start the leap controller code 
+
 ```
 	rosrun ardrone_fly leapFly
 ``` 
