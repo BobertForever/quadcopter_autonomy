@@ -5,7 +5,8 @@ find_package(catkin REQUIRED COMPONENTS
     cmvision
     geometry_msgs
     sensor_msgs
-    std_msgs)
+    std_msgs
+    leaptest)
 catkin_package()
 
 add_executable(ballFollow src/ballFollow.cpp)
@@ -17,3 +18,8 @@ add_executable(wiimoteFly src/wiimoteFly.cpp)
 target_link_libraries(wiimoteFly ${catkin_LIBRARIES})
 install(TARGETS wiimoteFly RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 add_dependencies(wiimoteFly ${catkin_EXPORTED_TARGETS})
+
+add_executable(leapFly src/leapFly.cpp)
+target_link_libraries(leapFly ${catkin_LIBRARIES})
+install(TARGETS leapFly RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+add_dependencies(leapFly ${catkin_EXPORTED_TARGETS})

@@ -15,12 +15,15 @@
   <build_depend>ardrone_autonomy</build_depend>
   <build_depend>cmvision</build_depend>
   <build_depend>geometry_msgs</build_depend>
+  <build_depend>leaptest</build_depend>
   <build_depend>sensor_msgs</build_depend>
   <build_depend>std_msgs</build_depend>
+
 
   <run_depend>ardrone_autonomy</run_depend>
   <run_depend>cmvision</run_depend>
   <run_depend>geometry_msgs</run_depend>
+  <run_depend>leaptest</run_depend>
   <run_depend>sensor_msgs</run_depend>
   <run_depend>std_msgs</run_depend>
 
