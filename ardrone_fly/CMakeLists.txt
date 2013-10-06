@@ -6,7 +6,8 @@ find_package(catkin REQUIRED COMPONENTS
     geometry_msgs
     sensor_msgs
     std_msgs
-    rosleap)
+    rosleap
+	topic_tools)
 catkin_package()
 
 add_executable(ballFollow src/ballFollow.cpp)
@@ -23,3 +24,10 @@ add_executable(leapFly src/leapFly.cpp)
 target_link_libraries(leapFly ${catkin_LIBRARIES})
 install(TARGETS leapFly RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 add_dependencies(leapFly ${catkin_EXPORTED_TARGETS})
+
+add_executable(wiiMuxSwitch src/wiiMuxSwitch.cpp)
+target_link_libraries(wiiMuxSwitch ${catkin_LIBRARIES})
+install(TARGETS wiiMuxSwitch RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+add_dependencies(wiiMuxSwitch ${catkin_EXPORTED_TARGETS})
+
+
