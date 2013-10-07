@@ -13,6 +13,7 @@ ros::Publisher reset_pub;
 
 void leapCallback(const rosleap::leap::ConstPtr& msg){
     geometry_msgs::Twist output;
+	std_msgs::Empty empty;
 
     output.linear.x = ((std::abs (msg->pitch)) - 90) / 30;
     if (output.linear.x > 1)
@@ -25,6 +26,11 @@ void leapCallback(const rosleap::leap::ConstPtr& msg){
         output.linear.y = 1;
     else if (output.linear.y < -1)
         output.linear.y = -1;
+	
+	else if(msg->pos.y < 6000)
+		output.linear.z = -.75;
+	else if(msg->pos.y > 24000)
+		output.linear.z = .75;
 
     velocity_pub.publish(output);
 }

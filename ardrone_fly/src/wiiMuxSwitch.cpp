@@ -1,6 +1,8 @@
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/Joy.h"
+#include "sensor_msgs/JoyFeedbackArray.h"
+#include "sensor_msgs/JoyFeedback.h"
 #include "std_msgs/Empty.h"
 #include "ardrone_autonomy/FlightAnim.h"
 #include "topic_tools/MuxSelect.h"
@@ -10,6 +12,23 @@
 bool listenState;
 int currentTopic;
 ros::V_string topics;
+ros::Publisher wiimote_state;
+
+void displayNumber(int n) {
+	sensor_msgs::JoyFeedbackArray joyFeedback;
+	std::vector<sensor_msgs::JoyFeedback> leds;
+	sensor_msgs::JoyFeedback f;
+
+	for (int i = 0; i < 4; i ++) {
+		f.type = 0;
+		f.id = i;
+		f.intensity = i == n ? 1 : 0;
+		leds.push_back(f); 
+	}
+
+	joyFeedback.array = leds;
+	wiimote_state.publish(joyFeedback);
+}
 
 void joyCallback(const sensor_msgs::Joy::ConstPtr& msg){
 
@@ -27,6 +46,7 @@ void joyCallback(const sensor_msgs::Joy::ConstPtr& msg){
 			topic_tools::MuxSelect m;
 			m.request.topic = topics[currentTopic];
 			ros::service::call("/mux/select", m);
+			displayNumber(currentTopic);
 			printf("Switching mux to topic #%d: %s\n", currentTopic, topics[currentTopic].c_str());
 
 		} else listenState = false;	
@@ -48,6 +68,7 @@ int main(int argc, char **argv){
 	currentTopic = 0;
 	listenState = false;
 	
+	wiimote_state = n.advertise<sensor_msgs::JoyFeedbackArray>("/joy/set_feedback", 1000);
 	ros::Subscriber sub = n.subscribe("joy", 1000, joyCallback);   
 
 	printf("Press B to cycle through topics:\n");
