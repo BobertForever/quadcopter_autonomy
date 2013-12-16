@@ -8,6 +8,7 @@
   </description>
   <author>FRI</author>
   <maintainer email="rmlynch@cs.utexas.edu">Robert Lynch</maintainer>
+  <maintainer email="mattb@cs.utexas.edu">Matt Broussard</maintainer>
   <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>
@@ -18,7 +19,10 @@
   <build_depend>rosleap</build_depend>
   <build_depend>sensor_msgs</build_depend>
   <build_depend>std_msgs</build_depend>
-
+  
+  <build_depend>image_geometry</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>OpenCV</build_depend>
 
   <run_depend>ardrone_autonomy</run_depend>
   <run_depend>cmvision</run_depend>
@@ -26,5 +30,9 @@
   <run_depend>rosleap</run_depend>
   <run_depend>sensor_msgs</run_depend>
   <run_depend>std_msgs</run_depend>
+
+  <run_depend>image_geometry</run_depend>
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>OpenCV</run_depend>
 
 </package>

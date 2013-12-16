@@ -22,7 +22,7 @@ void blobCallback(const cmvision::Blobs::ConstPtr& msg){
 		}
 
 		std::cout << "Blob area " << largeArea << " x: " << centerX << " y: " << centerY << std::endl;
-		
+
 		output.linear.z = (180 - centerY)/180;
 		output.angular.z = (320 - centerX)/320;
 		if(largeArea > 10000)
@@ -50,6 +50,4 @@ int main(int argc, char **argv){
 
 	return 0;
 }
-
-
 

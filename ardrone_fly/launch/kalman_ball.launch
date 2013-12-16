@@ -8,4 +8,8 @@
     <param name="color_radius_pix" value="0" />
   </node>
 
+  <node pkg="ardrone_autonomy" type="ardrone_driver" name="ardrone_driver" />
+
+  <node pkg="ardrone_fly" type="kalmanBallTrack" name="kalmanBallTrack" output="screen" />
+
 </launch>

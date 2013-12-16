@@ -1,0 +1,16 @@
+<launch>
+
+  <node pkg="cmvision" type="cmvision" name="cmvision">
+    <remap from="image" to="ardrone/front/image_raw" />
+    <param name="color_file" value="/home/bwi/catkin_ws/src/quadcopter_autonomy/ardrone_fly/colors2.txt" />
+    <param name="mean_shift_on" value="false" />	
+    <param name="spatial_radius_pix" value="0" />
+    <param name="color_radius_pix" value="0" />
+	<param name="debug_on" value="true" />
+  </node>
+
+  <node pkg="ardrone_autonomy" type="ardrone_driver" name="ardrone_driver" />
+
+  <node pkg="ardrone_fly" type="kalmanHoopTrack" name="kalmanHoopTrack" output="screen" />
+
+</launch>
