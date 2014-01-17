@@ -49,12 +49,12 @@ To run this node:
     rosrun ardrone_autonomy ardrone_driver
 ```
 
-* Start CMVision  
+* Start the tri-mux (starts the ball following with a multiplexer) 
 ```
-    roslaunch ardrone_fly cmvision_blob_detector.launch
+    roslaunch ardrone_fly ardrone_trimux_demo.launch
 ```
 
-* Start the wiimote/leap driver and controller code (see above)
+Once the launch file has completed setup, toggle the flight control mode using the "A" button on the wiimote controller. This can be done at any time to switch control between the three main control schemes (wiimote, leapmotion, and ball fallowing)
 
 ###BWI Safe Leap Demo
 With the addition of the Leap Motion control option, we have included a launchfile which runs both the wiimote and leapmotion controllers with an additional node that allows toggling between them using the B button on the wiimote (default is wiimote mode). Takeoff/landing/reset commands and flip commands must be issues in wiimote mode.
