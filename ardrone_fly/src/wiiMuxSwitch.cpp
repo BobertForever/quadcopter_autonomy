@@ -1,10 +1,7 @@
 #include "ros/ros.h"
-#include "geometry_msgs/Twist.h"
 #include "sensor_msgs/Joy.h"
 #include "sensor_msgs/JoyFeedbackArray.h"
 #include "sensor_msgs/JoyFeedback.h"
-#include "std_msgs/Empty.h"
-#include "ardrone_autonomy/FlightAnim.h"
 #include "topic_tools/MuxSelect.h"
 #include "topic_tools/MuxList.h"
 #include <string>
