@@ -1,11 +1,7 @@
-Quadcopter Autonomy
-===================
-
-ARDrone Fly
------------
-
+#ARDrone Fly
 ROS based code used to fly the ARDrone 2 Quadcopter in various ways. The general dependency for this package is the [ARDrone_Autonomy](https://github.com/AutonomyLab/ardrone_autonomy) package.
-###Wiimote Controller
+
+##Wiimote Controller
 The wiimote-based nodes require ROS [wiimote drivers](https://github.com/ros-drivers/joystick_drivers).
 To run this node:
 * Start the ARDrone drivers  
@@ -28,7 +24,7 @@ Optionally, you can run the launch file which starts all the nodes necessry for 
     roslaunch ardrone_fly ardrone_wiimote_teleop.launch
 ```  
 
-###Leap Motion Controller
+##Leap Motion Controller
 We have also added support for control with a Leap Motion device. This requires [rosleap](https://github.com/mattbroussard/rosleap) and the [Leap Motion SDK](https://www.leapmotion.com/developers).
 * Start the rosleap node 
 
@@ -41,7 +37,7 @@ We have also added support for control with a Leap Motion device. This requires 
 	rosrun ardrone_fly leapFly
 ``` 
 
-###Ball Following
+##Ball Following
 The Ball following node requires a blob tracking driver. For our purposes, [CMVision](https://github.com/dutchcheesehead/ROSMAV/tree/master/cmvision) was used. The colors.txt file in the root of the package contains the data for which blob it will follow.
 To run this node:
 * Start the ARDrone drivers  
@@ -56,7 +52,7 @@ To run this node:
 
 Once the launch file has completed setup, toggle the flight control mode using the "A" button on the wiimote controller. This can be done at any time to switch control between the three main control schemes (wiimote, leapmotion, and ball fallowing)
 
-###BWI Safe Leap Demo
+##BWI Safe Leap Demo
 With the addition of the Leap Motion control option, we have included a launchfile which runs both the wiimote and leapmotion controllers with an additional node that allows toggling between them using the B button on the wiimote (default is wiimote mode). Takeoff/landing/reset commands and flip commands must be issues in wiimote mode.
 
 
