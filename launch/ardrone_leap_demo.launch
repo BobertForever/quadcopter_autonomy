@@ -1,14 +1,23 @@
 <launch>
 
+  <!-- ardrone driver -->
   <node pkg="ardrone_autonomy" type="ardrone_driver" name="ardrone" />
+
+  <!-- human controls -->
   <node respawn="true" pkg="wiimote"  type="wiimote_node.py" name="arWii" />
+  
+  <!-- leap driver -->
   <node respawn="true" pkg="rosleap" type="rosleap" name="rosleap" />
+
+  <!-- flight controls -->
   <node pkg="ardrone_fly" type="wiimoteFly" name="wiiFly">
 	<remap from="cmd_vel" to="wiimoteFly/cmd_vel" />
   </node>
   <node pkg="ardrone_fly" type="leapFly" name="leapFly">
 	<remap from="cmd_vel" to="leapFly/cmd_vel" />
   </node>
+
+  <!-- multiplexing -->
   <node pkg="topic_tools" type="mux" name="mux" args="cmd_vel wiimoteFly/cmd_vel leapFly/cmd_vel">
   	<remap from="mux" to="wii_leap_mux" />
   </node>

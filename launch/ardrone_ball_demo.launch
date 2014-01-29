@@ -1,0 +1,35 @@
+<launch>
+
+  <!-- ardrone driver -->
+  <node pkg="ardrone_autonomy" type="ardrone_driver" name="ardrone_driver" />
+  
+  <!-- human controls -->
+  <node respawn="true" pkg="wiimote" type="wiimote_node.py" name="arWii" /> 
+  
+  <!-- ball tracking -->
+  <node pkg="cmvision" type="cmvision" name="cmvision">
+    <remap from="image" to="ardrone/front/image_raw" />
+    <param name="color_file" value="/home/bwi/catkin_ws/src/quadcopter_autonomy/ardrone_fly/colors.txt" />
+    <param name="mean_shift_on" value="false" />	
+    <param name="spatial_radius_pix" value="0" />
+    <param name="color_radius_pix" value="0" />
+  </node>
+  <node pkg="ardrone_fly" type="kalmanBallTrack" name="kalmanBallTrack" output="screen" />
+
+  <!-- flight controls -->
+  <node pkg="ardrone_fly" type="wiimoteFly" name="wiiFly">
+          <remap from="cmd_vel" to="wiimoteFly/cmd_vel" />
+  </node>
+  <node pkg="ardrone_fly" type="ballPosFly" name="ballPosFly">
+    <remap from="cmd_vel" to="ballPosFly/cmd_vel" />
+  </node>
+
+  <!-- multiplexing -->
+  <node pkg="topic_tools" type="mux" name="mux" args="cmd_vel wiimoteFly/cmd_vel ballPosFly/cmd_vel">
+          <remap from="mux" to="wii_leap_mux" />
+  </node>
+  <node pkg="ardrone_fly" type="wiiMuxSwitch" name="wiiMuxSwitch">
+          <remap from="mux" to="wii_leap_mux" />
+  </node> 
+
+</launch>
