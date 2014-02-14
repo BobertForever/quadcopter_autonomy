@@ -1,0 +1,44 @@
+
+body {
+
+	background: black;
+	color: white;
+
+}
+
+#attitude {
+
+	width: 500px;
+	height: 500px;
+	border: 0px none;
+	border-radius: 250px;
+	overflow: hidden;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -500px;
+	margin-top: -250px;
+
+}
+
+#panel {
+
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -250px;
+	font-size: 30pt;
+	text-align: center;
+	padding-top: 100px;
+
+}
+
+#battery, #control {
+
+	margin-bottom: 15px;
+	font-size: 72pt;
+
+}

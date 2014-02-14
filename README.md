@@ -19,7 +19,7 @@ To run this node:
 	rosrun ardrone_fly wiimoteFly
 ```
 
-Optionally, you can run the launch file which starts all the nodes necessry for wiimote control:  
+Optionally, you can run the launch file which starts all the nodes necessary for wiimote control:  
 ```
     roslaunch ardrone_fly ardrone_wiimote_teleop.launch
 ```  
@@ -60,4 +60,13 @@ The purpose of this launchfile is to facilitate safely demoing leapmotion contro
 * Run the launchfile for the BWI Safe Leap Demo 
 ```
 	roslaunch ardrone_fly ardrone_wii_leap_mux_demo.launch
+```
+
+##Demo Status Webpage
+
+The webpage at `web/index.html` uses [rosbridge](https://github.com/RobotWebTools/rosbridge_suite) and HTML-Aircraft-Indicators](https://github.com/PixelsCommander/HTML-Aircraft-Indicators) to display info during the above demos.
+
+You must have rosbridge running on port 9090 of the local machine.
+```
+	roslaunch rosbridge_server rosbridge_websocket.launch
 ```
