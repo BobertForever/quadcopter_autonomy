@@ -61,8 +61,9 @@ $(function() {
 			var controls = {
 				"wii" : ["wiimote", "red"],
 				"leap" : ["leap motion", "green"],
-				"ballfollow" : ["autonomous ball following", "yellow"],
-				"hooptrick" : ["autonomous hoop trick", "yellow"]
+				"ball" : ["ball following", "orange"],
+				"hoop" : ["hoop trick", "yellow"],
+				"hat" : ["hat follow", "#ff00ff"]
 			};
 			
 			var control = "unknown";
