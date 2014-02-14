@@ -64,7 +64,7 @@ The purpose of this launchfile is to facilitate safely demoing leapmotion contro
 
 ##Demo Status Webpage
 
-The webpage at `web/index.html` uses [rosbridge](https://github.com/RobotWebTools/rosbridge_suite) and HTML-Aircraft-Indicators](https://github.com/PixelsCommander/HTML-Aircraft-Indicators) to display info during the above demos.
+The webpage at `web/index.html` uses [rosbridge](https://github.com/RobotWebTools/rosbridge_suite) and [HTML-Aircraft-Indicators](https://github.com/PixelsCommander/HTML-Aircraft-Indicators) to display info during the above demos.
 
 You must have rosbridge running on port 9090 of the local machine.
 ```
